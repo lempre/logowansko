@@ -11,6 +11,8 @@ $pdo = (new SQLiteConnection())->connect();
 $sqlite = new SQLiteCreateTable($pdo);
 $sqlite->createTables();
 
+echo json_encode(array('login' => $_POST['login'], 'password' => $_POST['password']));
+
 if (isset($_POST['password']) && isset($_POST['login'])) {
     $stmt = $pdo->query("SELECT * FROM users");
 
@@ -22,7 +24,7 @@ if (isset($_POST['password']) && isset($_POST['login'])) {
                 session_regenerate_id();
                 $_SESSION['loggedin'] = $login;
 
-                json_encode(array('kody nuklearne' => '694202137'));
+                json_encode(array('login' => $login, 'kody nuklearne' => '694202137'));
                 exit;
             }
 
