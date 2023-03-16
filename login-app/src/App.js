@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Outlet />}>
             
-            <Route path="/LoginPage" element={<LoginPage />} />
+            <Route path="" element={<LoginPage />} />
             <Route path="/HomePage" element={<HomePage />} />
             <Route path="/ErrorPage" element={<ErrorPage />} />
             <Route path="/Unauthorize" element={<Unauthorize />} />
