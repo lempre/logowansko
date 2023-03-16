@@ -27,7 +27,7 @@ if (isset($_SESSION['loggedin'])) {
 
     <?php
         if (isset($_GET['error'])) {
-            echo '<p class="color-youtube">Podano błędne hasło!</p>';
+            echo '<p class="color-youtube">$_GET[error]</p>';
         }
     ?>
 </body>

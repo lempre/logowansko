@@ -11,18 +11,26 @@ $pdo = (new SQLiteConnection())->connect();
 $sqlite = new SQLiteCreateTable($pdo);
 $sqlite->createTables();
 
-if (isset($_POST['password'])) {
-    $stmt = $pdo->query("SELECT * FROM password");
-    $password = $stmt->fetch(\PDO::FETCH_ASSOC)['password'];
+if (isset($_POST['password']) && isset($_POST['login'])) {
+    $stmt = $pdo->query("SELECT * FROM users");
 
-    if (password_verify($_POST['password'], $password)) {
-        session_regenerate_id();
-        $_SESSION['loggedin'] = TRUE;
+    while ($result = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+        $login = $result['login'];
 
-        header("location: dashboard.php");
-    } else {
-        header("location: login.php?error=");
+        if ($login == $_POST['login']) {
+            if (password_verify($_POST['password'], $result['password'])) {
+                session_regenerate_id();
+                $_SESSION['loggedin'] = $login;
+
+                header("location: index.php");
+                exit;
+            }
+
+            header("location: login.php?error=Podałeś błędne hasło");
+
+            exit;
+        }
     }
-} else {
-    header("location: login.php?error=");
 }
+
+header("location: login.php?error=Podany login nie istnieje");
