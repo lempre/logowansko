@@ -22,15 +22,15 @@ if (isset($_POST['password']) && isset($_POST['login'])) {
                 session_regenerate_id();
                 $_SESSION['loggedin'] = $login;
 
-                header("location: index.php");
+                json_encode(array('kody nuklearne' => '694202137'));
                 exit;
             }
 
-            header("location: login.php?error=Podałeś błędne hasło");
+            echo json_encode(array('error' => 'Błędne hasło'));
 
             exit;
         }
     }
 }
 
-header("location: login.php?error=Podany login nie istnieje");
+echo json_encode(array("error" => 'Użytkownik nie istnieje'));
