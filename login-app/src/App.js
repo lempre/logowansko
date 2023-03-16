@@ -7,16 +7,20 @@ import Unauthorize from './components/Unauthorize';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route path="/LoginPage" element={<LoginPage />} />
-          <Route path="/HomePage" element={<HomePage />} />
-          <Route path="/ErrorPage" element={<ErrorPage />} />
-          <Route path="/Unauthorize" element={<Unauthorize />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div className='h-screen w-screen p-0 m-0 overflow-hidden bg-[url("\\images\\loginBG.webp")] bg-cover bg-center bg-no-repeat bg-'>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Outlet />}>
+            
+            <Route path="/LoginPage" element={<LoginPage />} />
+            <Route path="/HomePage" element={<HomePage />} />
+            <Route path="/ErrorPage" element={<ErrorPage />} />
+            <Route path="/Unauthorize" element={<Unauthorize />} />
+
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
